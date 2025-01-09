@@ -7,6 +7,7 @@ use App\Http\Controllers\API\CourseCategoryController;
 use App\Http\Controllers\API\CourseContentController;
 use App\Http\Controllers\API\CourseController;
 use App\Http\Controllers\API\CourseFeedbackController;
+use App\Http\Controllers\API\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'v1'], function () {
@@ -50,6 +51,10 @@ Route::group(['prefix' => 'v1'], function () {
         Route::get('courses/{courseId}/feedbacks/{id}', [CourseFeedbackController::class, 'show']);
         Route::put('courses/{courseId}/feedbacks/{id}', [CourseFeedbackController::class, 'update']);
         Route::delete('courses/{courseId}/feedbacks/{id}', [CourseFeedbackController::class, 'destroy']);
+
+        // Manage Profile
+        Route::get('profile', [ProfileController::class, 'show']);
+        Route::put('profile', [ProfileController::class, 'update']);
 
         // Auth
         Route::post('logout', [AuthController::class, 'logout']);
