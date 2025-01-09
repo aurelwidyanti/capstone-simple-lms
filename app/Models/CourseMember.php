@@ -21,4 +21,9 @@ class CourseMember extends Model
     {
         return $this->belongsTo(Course::class, 'course_id');
     }
+
+    public function feedbacks()
+    {
+        return $this->hasMany(CourseFeedback::class, 'member_id');
+    }
 }
