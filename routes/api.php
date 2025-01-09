@@ -6,6 +6,7 @@ use App\Http\Controllers\API\CourseAnnouncementController;
 use App\Http\Controllers\API\CourseCategoryController;
 use App\Http\Controllers\API\CourseContentController;
 use App\Http\Controllers\API\CourseController;
+use App\Http\Controllers\API\CourseFeedbackController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'v1'], function () {
@@ -42,6 +43,13 @@ Route::group(['prefix' => 'v1'], function () {
         Route::post('categories', [CourseCategoryController::class, 'store']);
         Route::get('categories/{id}', [CourseCategoryController::class, 'show']);
         Route::delete('categories/{id}', [CourseCategoryController::class, 'destroy']);
+
+        // Feedbacks
+        Route::get('courses/{courseId}/feedbacks', [CourseFeedbackController::class, 'index']);
+        Route::post('courses/{courseId}/feedbacks', [CourseFeedbackController::class, 'store']);
+        Route::get('courses/{courseId}/feedbacks/{id}', [CourseFeedbackController::class, 'show']);
+        Route::put('courses/{courseId}/feedbacks/{id}', [CourseFeedbackController::class, 'update']);
+        Route::delete('courses/{courseId}/feedbacks/{id}', [CourseFeedbackController::class, 'destroy']);
 
         // Auth
         Route::post('logout', [AuthController::class, 'logout']);
