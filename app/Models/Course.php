@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {
-    protected $fillable =[
+    protected $fillable = [
         'name',
         'description',
         'price',
@@ -43,5 +43,10 @@ class Course extends Model
     public function category()
     {
         return $this->belongsTo(CourseCategory::class, 'category_id');
+    }
+
+    public function feedbacks()
+    {
+        return $this->hasMany(CourseFeedback::class, 'course_id');
     }
 }
