@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
+    /**
+     * Display the user profile
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function show(Request $request)
     {
         $courseCreated = $request->user()->courses;
@@ -24,6 +30,12 @@ class ProfileController extends Controller
         ], 200);
     }
 
+    /**
+     * Update the user profile
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function update(Request $request)
     {
         $validated = $request->validate([
