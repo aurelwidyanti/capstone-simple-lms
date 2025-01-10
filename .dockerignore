@@ -1,0 +1,5 @@
+mysql-data
+nginx
+node_modules
+vendor
+.env
