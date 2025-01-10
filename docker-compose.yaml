@@ -1,0 +1,46 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: simple-lms-app
+    container_name: simple-lms-app
+    volumes:
+      - .:/var/www
+    networks:
+      - laravel_network
+
+  webserver:
+    image: nginx:stable-alpine
+    container_name: nginx
+    restart: unless-stopped
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - .:/var/www
+    ports:
+      - "8080:80"
+    networks:
+      - laravel_network
+    depends_on:
+      - app
+
+  db:
+    image: mysql:8
+    container_name: mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: simple_lms
+      MYSQL_USER: simple_lms
+      MYSQL_PASSWORD: laravel
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+    networks:
+      - laravel_network
+
+networks:
+  laravel_network:
+    driver: bridge
+
+volumes:
+  db_data:
