@@ -36,6 +36,7 @@ class CourseCategoryController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string',
+            'slug' => 'required|string',
         ]);
 
         if (!$validated) {
