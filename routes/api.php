@@ -27,6 +27,7 @@ Route::group(['prefix' => 'v1'], function () {
         Route::post('courses/{id}/enroll', [CourseController::class, 'enrollCourse']);
         
         // Contents
+        Route::post('courses/{id}/contents', [CourseContentController::class, 'store']);
         Route::get('contents/{id}/comments', [CourseContentController::class, 'listComments']);
         Route::post('contents/{id}/comments', [CourseContentController::class, 'storeComment']);
         
