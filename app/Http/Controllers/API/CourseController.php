@@ -22,7 +22,7 @@ class CourseController extends Controller
     public function index(Request $request)
     {
         $paginate = $request->query('paginate', 10);
-        $courses = Course::with('teacher', 'category')->paginate($paginate);
+        $courses = Course::with('teacher', 'category', 'members')->paginate($paginate);
 
         return response()->json([
             'status' => 'success',
@@ -64,7 +64,7 @@ class CourseController extends Controller
 
         $course = Course::create($validated);
 
-        $course->load('teacher', 'category');
+        $course->load('teacher', 'category', 'members');
 
         return response()->json([
             'status' => 'success',
@@ -91,7 +91,7 @@ class CourseController extends Controller
             ], 404);
         }
 
-        $course->load('teacher', 'category');
+        $course->load('teacher', 'category', 'members');
 
         return response()->json([
             'status' => 'success',
@@ -150,7 +150,7 @@ class CourseController extends Controller
 
         $course->update($validated);
 
-        $course->load('teacher', 'category');
+        $course->load('teacher', 'category', 'members');
 
         return response()->json([
             'status' => 'success',
@@ -202,8 +202,8 @@ class CourseController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function myCourses(Request $request)
-    {
-        $courses = Course::where('teacher_id', $request->user()->id)->get();
+    {        
+        $courses = Course::where('teacher_id', $request->user()->id)->with('teacher', 'category', 'members')->get();
 
         return response()->json([
             'status' => 'success',
