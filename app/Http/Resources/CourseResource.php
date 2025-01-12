@@ -22,6 +22,7 @@ class CourseResource extends JsonResource
             'image' => $this->image,
             'teacher' => new UserResource($this->whenLoaded('teacher')),
             'category' => new CourseCategoryResource($this->whenLoaded('category')),
+            'members' => CourseMemberResource::collection($this->whenLoaded('members')),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
