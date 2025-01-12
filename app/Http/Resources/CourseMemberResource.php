@@ -17,7 +17,7 @@ class CourseMemberResource extends JsonResource
         return [
             'id' => $this->id,
             'course' => new CourseResource($this->whenLoaded('course')),
-            'user' => new UserResource($this->whenLoaded('user')),
+            'user' => new UserResource($this->user),
             'roles' => $this->roles,
         ];
     }
