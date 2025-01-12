@@ -17,7 +17,7 @@ class CommentResource extends JsonResource
         return [
             'id' => $this->id,
             'comment' => $this->comment,
-            'content' => new CourseContentResource($this->whenLoaded('content')),
+            'content' => new CourseContentMiniResource($this->whenLoaded('content')),
             'member' => new CourseMemberResource($this->whenLoaded('member')),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
