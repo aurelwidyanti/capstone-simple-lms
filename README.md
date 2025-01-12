@@ -101,19 +101,19 @@ docker-compose exec app chmod -R 777 /var/www/storage /var/www/bootstrap/cache
 1. Install dependensi Laravel menggunakan Composer:
 
     ```bash
-    docker exec capstone-simple composer install
+    docker exec simple-lms-app composer install
     ```
 
 2. Salin file `.env.example` menjadi `.env`:
 
     ```bash
-    docker exec laravel-app cp .env.example .env
+    docker exec simple-lms-app cp .env.example .env
     ```
 
 3. Generate application key:
 
     ```bash
-    docker exec laravel-app php artisan key:generate
+    docker exec simple-lms-app php artisan key:generate
     ```
 
 ### Langkah 5: Atur Konfigurasi Database
@@ -124,8 +124,8 @@ Perbarui konfigurasi database di file `.env` yang berada di direktori `laravel-p
 DB_CONNECTION=mysql
 DB_HOST=db
 DB_PORT=3306
-DB_DATABASE=laravel-pss
-DB_USERNAME=laravel-pss
+DB_DATABASE=simple-lms
+DB_USERNAME=simple-lms
 DB_PASSWORD=laravel
 ```
 
@@ -134,7 +134,7 @@ DB_PASSWORD=laravel
 Jalankan migrasi untuk membuat tabel dan `--seed` untuk mengisi data awal:
 
 ```bash
-docker exec laravel-app php artisan migrate --seed
+docker exec simple-lms-app php artisan migrate --seed
 ```
 
 ### Mengakses Aplikasi
@@ -164,13 +164,13 @@ docker-compose down
 -   **Mengakses Kontainer PHP**: Untuk masuk ke dalam kontainer PHP dan menjalankan perintah Artisan, gunakan:
 
     ```bash
-    docker exec -it laravel-app bash
+    docker exec -it simple-lms-app bash
     ```
 
 -   **Mengakses Kontainer MySQL**: Untuk masuk ke dalam kontainer MySQL, gunakan:
 
     ```bash
-    docker exec -it laravel-db mysql -u laravel-pss -p
+    docker exec -it mysql mysql -u simple-lms -p
     ```
 
     Masukan password `laravel` untuk mengakses database.
@@ -179,6 +179,6 @@ docker-compose down
 
 -   `Dockerfile`: Mendefinisikan lingkungan PHP-FPM.
 -   `docker-compose.yml`: Mengatur kontainer Laravel, Nginx, dan MySQL.
--   `laravel-pss-app`: Direktori aplikasi Laravel
--   `mysql-data`: Direktori penyimpanan data MySQL.
+-   `simple-lms-app`: Direktori aplikasi Laravel
+-   `mysql`: Direktori penyimpanan data MySQL.
 -   `nginx/laravel.conf`: File konfigurasi Nginx untuk menjalankan aplikasi Laravel.
