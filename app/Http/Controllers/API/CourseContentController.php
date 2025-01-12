@@ -34,7 +34,7 @@ class CourseContentController extends Controller
         return response()->json([
             'status' => 'success',
             'message' => 'Comments fetched successfully',
-            'data' => CourseContentFullResource::collection($content)
+            'data' => new CourseContentFullResource($content)
         ]);
     }
 
@@ -57,7 +57,7 @@ class CourseContentController extends Controller
             ], 404);
         }
 
-        if (!$content->course->isMember($request->user() === false)) {
+        if ($content->course->isMember($request->user()) === false) {
             return response()->json([
                 'status' => 'error',
                 'message' => 'You are not a member of this course'
@@ -77,7 +77,7 @@ class CourseContentController extends Controller
         }
         
         $comment = Comment::create([
-            'user_id' => $request->user()->id,
+            'member_id' => $request->user()->id,
             'content_id' => $content->id,
             'comment' => $request->comment
         ]);
