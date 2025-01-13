@@ -93,16 +93,16 @@ class CourseAnnouncementController extends Controller
     public function update(Request $request, int $id)
     {
         $announcement = CourseAnnouncement::find($id);
-
+        
         if (!$announcement) {
             return response()->json([
                 'status' => 'error',
                 'message' => 'Course announcement not found'
             ], 404);
         }
-
+        
         $course = Course::find($announcement->course_id);
-
+        
         if ($request->user()->id != $course->teacher_id) {
             return response()->json([
                 'status' => 'error',

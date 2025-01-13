@@ -179,6 +179,6 @@ docker-compose down
 
 -   `Dockerfile`: Mendefinisikan lingkungan PHP-FPM.
 -   `docker-compose.yml`: Mengatur kontainer Laravel, Nginx, dan MySQL.
--   `simple-lms-app`: Direktori aplikasi Laravel
+-   `capstone-simple-lms`: Direktori aplikasi Laravel
 -   `mysql`: Direktori penyimpanan data MySQL.
 -   `nginx/laravel.conf`: File konfigurasi Nginx untuk menjalankan aplikasi Laravel.

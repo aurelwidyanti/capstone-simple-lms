@@ -55,7 +55,7 @@ Route::group(['prefix' => 'v1'], function () {
 
         // Manage Profile
         Route::get('profile', [ProfileController::class, 'show']);
-        Route::put('profile', [ProfileController::class, 'update']);
+        Route::put('profile/edit', [ProfileController::class, 'update']);
 
         // Auth
         Route::post('logout', [AuthController::class, 'logout']);

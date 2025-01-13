@@ -42,7 +42,7 @@ class ProfileController extends Controller
             'first_name' => 'required|string',
             'last_name' => 'required|string',
             'email' => 'required|email',
-            'photo' => 'nullable|image',
+            'photo' => 'nullable|string',
             'description' => 'nullable|string',
             'handphone' => 'nullable|string',
         ]);
@@ -57,20 +57,13 @@ class ProfileController extends Controller
 
         $user = $request->user();
 
-        $user->first_name = $validated['first_name'];
-        $user->last_name = $validated['last_name'];
-        $user->description = $validated['description'];
-        $user->handphone = $validated['handphone'];
-        $user->email = $validated['email'];
-
-      
         if ($request->hasFile('photo')) {
             $photo = $request->file('photo');
             $photo->store('public/users');
             $user->photo = $photo->hashName();
         }
 
-        $user->save();
+        $user->update($validated);
 
         return response()->json([
             'status' => 'success',
