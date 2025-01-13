@@ -124,8 +124,8 @@ Perbarui konfigurasi database di file `.env` yang berada di direktori `laravel-p
 DB_CONNECTION=mysql
 DB_HOST=db
 DB_PORT=3306
-DB_DATABASE=simple-lms
-DB_USERNAME=simple-lms
+DB_DATABASE=simple_lms
+DB_USERNAME=simple_lms
 DB_PASSWORD=laravel
 ```
 
@@ -170,7 +170,7 @@ docker-compose down
 -   **Mengakses Kontainer MySQL**: Untuk masuk ke dalam kontainer MySQL, gunakan:
 
     ```bash
-    docker exec -it mysql mysql -u simple-lms -p
+    docker exec -it mysql mysql -u simple_lms -p
     ```
 
     Masukan password `laravel` untuk mengakses database.
